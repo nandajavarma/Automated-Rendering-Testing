@@ -1,0 +1,10 @@
+_setname = AskUser("Test set name ?")
+
+Print("Add following code to harfbuzz/test/test-shape-complex.c:\n")
+# test set header
+Print("static const test_set_t tests_" + _setname + " = {")
+Print('  {"' + $filename:t + '", 0},')
+Print('  {')
+tart first case
+_first = 1
+start_case.pe()

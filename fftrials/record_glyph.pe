@@ -1,0 +1,24 @@
+if (_first)
+	_first = 0
+else
+	# if not first test case, display last chosen glyphs
+	Print("      { " + _glyphs + "0}")
+	# test case footer
+	Print("    },")
+endif
+
+description = AskUser("Test description ?")
+Print('    { "' + description + '",')
+
+string = Ucs4(AskUser("Character string to test?"))
+characters = "      { "
+i = 0
+while (i < SizeOf(string))
+	hexa = StrSplit(ToString(UCodePoint(string[i])), "u")
+	characters += "0x" + hexa[1] + ", "
+	i++
+endloop
+characters += "0},"
+Print(characters)
+
+_glyphs = ""
