@@ -3,8 +3,8 @@
 
 int main(int argc, char *argv[])
 {
-  int i = 0, j = 0, k = 0, m =0, n=0, l =0, opsize, tpsize;
-  char word[20][20], glyph[20][20];
+  int i = 0, j, k, l, opsize, tpsize, m = 0, c = 1;
+  //char glyph[20][8] = {};
   FILE *op, *tp, *rp;
   if(argc != 3)
     {
@@ -14,13 +14,77 @@ int main(int argc, char *argv[])
   op = fopen(argv[1], "r");
   tp = fopen(argv[2], "r");
   rp = fopen("result.txt", "rw");
-  fseek(op, 0, SEEK_END); // seek to end of file
-  opsize = ftell(op); // get current file pointer
-  fseek(op, 0, SEEK_SET); // seek back to beginning of file
-  fseek(tp, 0, SEEK_END); // seek to end of file
-  tpsize = ftell(tp); // get current file pointer
-  fseek(tp, 0, SEEK_SET); // seek back to beginning of file
+  //getting the size of first file
+  fseek(op, 0, SEEK_END); 
+  opsize = ftell(op); 
+  fseek(op, 0, SEEK_SET); 
+  //getting the size of second file
+  fseek(tp, 0, SEEK_END); 
+  tpsize = ftell(tp); 
+  fseek(tp, 0, SEEK_SET); 
+
   char bufferop[opsize], buffertp[tpsize];
   fread(bufferop, opsize, 1, op);
   fread(buffertp, tpsize, 1, tp);
+
+   while(i <= tpsize- 1)
+   { 
+      j = 0;
+			c++;
+      while(buffertp[i] != ']') 
+	{
+	   
+	   char glyph[20] = {};
+	   if(buffertp[i] == '[' || buffertp[i] == '|')
+	     { 
+	       k = 0;
+	       while(buffertp[++i] != '=')
+		 {
+		   glyph[k] = buffertp[i];
+		   k++;
+		 }
+	              printf("%s\n", glyph);
+
+
+
+   	     char glyph0[20] = {};
+	       int n = 0;
+			while( bufferop[m] != ']' &&  bufferop[m] !=  ',')
+			{
+	   	glyph0[n] = bufferop[m++];
+			n++;
+			}
+//			while(bufferop[m] != '[' || bufferop[m] !=',')
+	//				m++;
+			
+				
+				
+	 
+//  		if(strcmp(glyph, glyph0) == 0)
+	//		{	
+		//			printf("yep/0");	
+//					fprintf(rp, c);
+		//	}
+//		  printf("%s\n", glyph0);
+
+//		   while(bufferop[m] == ' ')
+	//	   {
+  //  m++;
+		  // }*/
+		 
+	       
+	     }
+	   else i++;
+       	}
+      while(buffertp[i] != '[')
+      i++;
+   }
+	fclose(op);
+	fclose(tp);
+	fclose(rp);
 }
+
+
+
+      
+		
