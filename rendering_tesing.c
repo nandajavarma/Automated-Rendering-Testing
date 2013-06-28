@@ -3,8 +3,7 @@
 
 int main(int argc, char *argv[])
 {
-  int i = 0, j, k, l, opsize, tpsize, m = 0, c = 1;
-  //char glyph[20][8] = {};
+  int i = 0, j, k, l, opsize, tpsize, m = 0, c = 0;
   FILE *op, *tp, *rp;
   if(argc != 3)
     {
@@ -13,7 +12,7 @@ int main(int argc, char *argv[])
     }
   op = fopen(argv[1], "r");
   tp = fopen(argv[2], "r");
-  rp = fopen("result.txt", "rw");
+  rp = fopen("result.txt", "rw"); //file to store the results of matching
   //getting the size of first file
   fseek(op, 0, SEEK_END); 
   opsize = ftell(op); 
@@ -27,32 +26,45 @@ int main(int argc, char *argv[])
   fread(bufferop, opsize, 1, op);
   fread(buffertp, tpsize, 1, tp);
 
-   while(i <= tpsize- 1)
-   { 
-      j = 0;
-			c++;
-      while(buffertp[i] != ']') 
-			{	   
-	  		char glyph[20] = {};
-	   		if(buffertp[i] == '[' || buffertp[i] == '|')
-	     	{ 
-	       k = 0;
-	       while(buffertp[++i] != '=')
-		 		 {
+	//Reading each glyph name one by one
+  while(i <= tpsize- 1)
+  { 
+		j = 0;
+		c++; // To get the current word corresponding to the glyph,  this will be used
+    while(buffertp[i] != ']') 
+		{	   
+			char glyph[20] = {};
+	  	if(buffertp[i] == '[' || buffertp[i] == '|')
+	   	{ 
+	  	  k = 0;
+	      while(buffertp[++i] != '=')
+		 	  {
 		   		glyph[k] = buffertp[i];
 		   		k++;
-				 }
-	       printf("%s\n", glyph);    
-	     	}
-	   		else i++;
-     	}
-      while(buffertp[i] != '[')
-      	i++;
-   }
+				}
+	      printf("%s\n", glyph);    
 
-	 fclose(op);
-	 fclose(tp);
-	 fclose(rp);
+				//Getting corresponding glyph from the correct glyphs' file 	
+				//TODO								
+			
+
+
+
+				//Comparing the glyphs
+				//TODO
+
+				//writing the results to a third new file
+				//TODO
+	    }	
+	   	else i++;
+   	}
+    while(buffertp[i] != '[')
+    	i++;
+  }
+
+	fclose(op);
+	fclose(tp);
+	fclose(rp);
 }
 
 
