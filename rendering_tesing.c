@@ -32,56 +32,27 @@ int main(int argc, char *argv[])
       j = 0;
 			c++;
       while(buffertp[i] != ']') 
-	{
-	   
-	   char glyph[20] = {};
-	   if(buffertp[i] == '[' || buffertp[i] == '|')
-	     { 
+			{	   
+	  		char glyph[20] = {};
+	   		if(buffertp[i] == '[' || buffertp[i] == '|')
+	     	{ 
 	       k = 0;
 	       while(buffertp[++i] != '=')
-		 {
-		   glyph[k] = buffertp[i];
-		   k++;
-		 }
-	              printf("%s\n", glyph);
-
-
-
-   	     char glyph0[20] = {};
-	       int n = 0;
-			while( bufferop[m] != ']' &&  bufferop[m] !=  ',')
-			{
-	   	glyph0[n] = bufferop[m++];
-			n++;
-			}
-//			while(bufferop[m] != '[' || bufferop[m] !=',')
-	//				m++;
-			
-				
-				
-	 
-//  		if(strcmp(glyph, glyph0) == 0)
-	//		{	
-		//			printf("yep/0");	
-//					fprintf(rp, c);
-		//	}
-//		  printf("%s\n", glyph0);
-
-//		   while(bufferop[m] == ' ')
-	//	   {
-  //  m++;
-		  // }*/
-		 
-	       
-	     }
-	   else i++;
-       	}
+		 		 {
+		   		glyph[k] = buffertp[i];
+		   		k++;
+				 }
+	       printf("%s\n", glyph);    
+	     	}
+	   		else i++;
+     	}
       while(buffertp[i] != '[')
-      i++;
+      	i++;
    }
-	fclose(op);
-	fclose(tp);
-	fclose(rp);
+
+	 fclose(op);
+	 fclose(tp);
+	 fclose(rp);
 }
 
 
