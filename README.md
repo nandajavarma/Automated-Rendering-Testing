@@ -13,5 +13,12 @@ Now create a file with correct glyph names of the words specified in the first f
 
 Now run the above two files through the main script rendering_testing.c, i.e. after executing and getting the executable file a.out, run:
 		./a.out orig_glyph.txt rendered_glyphs.txt
-As of now, this will extract the glyphnames from the two files in  order and compare them. So as of now, getting the glyph names in the original glyphs files in correct order as they are given in the words file is a crucial part. Further steps would be to get the wrong ones into another file on which we can execute a fourth bash script and get its hb-shape output and also to make the code efficient.
+As of now, this will extract the glyphnames from the two files in  order and compare them. So as of now, getting the glyph names in the original glyphs files in correct order as they are given in the words file is a crucial part. 
+
+The script will read both files and compare the corresponding glyph values and writes the line number of the wrongly rendered word appearing in the word file to a new file name result.txt.
+
+The third script show_rendering.sh can be used to see the wrong renderings. It is to be executed as follows:
+./show_rendering.sh result.txt wordfile /path/to/fontfile
+
+This will produce png images of the wrongly rendered words in the current folder.
 
