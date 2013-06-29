@@ -1,9 +1,11 @@
+//Automated rendering testing
+
 #include<stdio.h>
 #include<string.h>
 
 int main(int argc, char *argv[])
 {
-  int i = 0, j, k, l, opsize, tpsize, m = 0, c = 0;
+  int i = 0, j, k, l, opsize, tpsize, m = 0, c = 0, n;
   FILE *op, *tp, *rp;
   if(argc != 3)
     {
@@ -12,7 +14,7 @@ int main(int argc, char *argv[])
     }
   op = fopen(argv[1], "r");
   tp = fopen(argv[2], "r");
-  rp = fopen("result.txt", "w"); //file to store the results of matching
+  rp = fopen("result.txt", "w+"); //file to store the results of matching
   //getting the size of first file
   fseek(op, 0, SEEK_END); 
   opsize = ftell(op); 
@@ -42,14 +44,14 @@ int main(int argc, char *argv[])
 		   		glyph[k] = buffertp[i];
 		   		k++;
 				}
-	      printf("%s", glyph);    
+	      //printf("%s\t", glyph);    
 
 				//Getting corresponding glyph from the correct glyphs' file 	
 				char glyph0[20] = {};
 				++m;
-				for(int n = 0; bufferop[m] != ',' && bufferop[m] != ']'; n++)    
+				for(n = 0; bufferop[m] != ',' && bufferop[m] != ']'; n++)    
         	glyph0[n] = bufferop[m++];                                      
-   	    printf("%s", glyph0);                                         
+   	    //printf("%s\n", glyph0);                                         
 	      if(bufferop[m] == ']')                                                
 			  {                                                                 
 	        while(bufferop[m] != '[')                                      
@@ -73,7 +75,7 @@ int main(int argc, char *argv[])
     while(buffertp[i] != '[')
     	i++;
   }
-	fseek(rp, 0, SEEK_SET);
+	fseek(rp, 0, SEEK_END);
 	if(ftell(rp) == 0)
 			printf("No rendering problems detected\n");
 	fclose(op);
