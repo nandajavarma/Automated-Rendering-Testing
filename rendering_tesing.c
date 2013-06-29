@@ -46,14 +46,16 @@ int main(int argc, char *argv[])
 
 				//Getting corresponding glyph from the correct glyphs' file 	
 				//TODO								
-				char glyph0[20] = {}
-				int n = 0;
-				if(bufferop[m] == '['  || bufferop[m] == ',')
-				{
-					while(bufferop[m++] != ',' && bufferop[m] != ']')
-						glyph0[n++] = bufferop[m];
-				}
-
+				char glyph0[20] = {};
+				++m;
+				for(int n = 0; bufferop[m] != ',' && bufferop[m] != ']'; n++)    
+        	glyph0[n] = bufferop[m++];                                      
+   	    printf("%s\n", glyph0);                                         
+	      if(bufferop[m] == ']')                                                
+			  {                                                                 
+	        while(bufferop[m] != '[')                                      
+    	      m++;                                                          
+  	    }        
 
 				//Comparing the glyphs
 				//TODO
