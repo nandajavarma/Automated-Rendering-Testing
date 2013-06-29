@@ -78,6 +78,7 @@ int main(int argc, char *argv[])
 	fseek(rp, 0, SEEK_END);
 	if(ftell(rp) == 0)
 			printf("No rendering problems detected\n");
+	else printf("Rendering problems were detected and are stored in result.txt file\n");
 	fclose(op);
 	fclose(tp);
 	fclose(rp);

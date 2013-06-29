@@ -28,7 +28,7 @@
 [uni0D47,p1l3,uni0D3E]
 [l3,y2]
 [p1r3]
-[k1th1r3]
+[k1th1,r4]
 [k1,uni0D3E,y1,xx,space,k1,rh,uni0D3F]
 [k1,uni0D3E,r3cil,uni0D47,k1k1,uni0D3E,t1,k1,n1cil]
 [m1u1,k2,y2,m1,n1th1r3,uni0D3F]
