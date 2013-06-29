@@ -45,7 +45,6 @@ int main(int argc, char *argv[])
 	      printf("%s\n", glyph);    
 
 				//Getting corresponding glyph from the correct glyphs' file 	
-				//TODO								
 				char glyph0[20] = {};
 				++m;
 				for(int n = 0; bufferop[m] != ',' && bufferop[m] != ']'; n++)    
