@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     }
   op = fopen(argv[1], "r");
   tp = fopen(argv[2], "r");
-  rp = fopen("result.txt", "rw"); //file to store the results of matching
+  rp = fopen("result.txt", "w"); //file to store the results of matching
   //getting the size of first file
   fseek(op, 0, SEEK_END); 
   opsize = ftell(op); 
@@ -42,35 +42,44 @@ int main(int argc, char *argv[])
 		   		glyph[k] = buffertp[i];
 		   		k++;
 				}
-	      printf("%s\n", glyph);    
+	      printf("%s", glyph);    
 
 				//Getting corresponding glyph from the correct glyphs' file 	
 				char glyph0[20] = {};
 				++m;
 				for(int n = 0; bufferop[m] != ',' && bufferop[m] != ']'; n++)    
         	glyph0[n] = bufferop[m++];                                      
-   	    printf("%s\n", glyph0);                                         
+   	    printf("%s", glyph0);                                         
 	      if(bufferop[m] == ']')                                                
 			  {                                                                 
 	        while(bufferop[m] != '[')                                      
     	      m++;                                                          
   	    }        
 
-				//Comparing the glyphs
-				//TODO
-
-				//writing the results to a third new file
-				//TODO
+				//Comparing the glyphs and writing the results to a third new file
+				if(strcmp(glyph, glyph0) != 0)
+				{
+					if (rp == NULL)
+				  {
+         		printf("I couldn't open results.dat for writing.\n");
+         		exit(0);
+     	    }
+					fprintf(rp, "%d\n", c);
+				}
+				
 	    }	
 	   	else i++;
    	}
     while(buffertp[i] != '[')
     	i++;
   }
-
+	fseek(rp, 0, SEEK_SET);
+	if(ftell(rp) == 0)
+			printf("No rendering problems detected\n");
 	fclose(op);
 	fclose(tp);
 	fclose(rp);
+	return 0;
 }
 
 
