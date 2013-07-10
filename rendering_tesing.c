@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 				{
 					if (rp == NULL)
 				  {
-         		printf("I couldn't open results.dat for writing.\n");
+         		printf("I couldn't open results file for writing.\n");
          		exit(0);
      	    }
 					fprintf(rp, "%d\n", c);
