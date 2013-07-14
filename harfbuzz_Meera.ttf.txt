@@ -61,7 +61,7 @@
 [ch1=0+1452|xx=1+318|dotrephch1ch1=1+1452]
 [m1=0+1056|uni0D3E=0+848|xx=2+318|dotrephch1ch1=2+1452]
 [m1=0+1056|uni0D3E=0+848|dotrephth1th1=2+2708]
-[th1=0+1609|uni0D40=0+324|dotrephth1th2=2+2586|uni0D02=2+685]
+[th1=0+1609|uni0D40=0+324|xx=2+318|dotrephth1th2=2+2586]
 [p1p1=0+1441|r4=0+599]
 [m1=0+1056|uni0D3E=0+848|dotrephch3ch3=2+2972|uni0D3E=2+848|r3=7+1205|n1cil=8+1668]
 [uni0D05=0+2294|dotrephch3ch3=1+2972|u1=1+639|n1=6+1562|n1cil=7+1668]
