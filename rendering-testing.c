@@ -8,30 +8,30 @@ main()
 	char rendfile[20], wordfile[20], reffile[20];
 	printf("Welcome! Select the font for testing\n1.Meera\n2.Rachana\n3.Suruma\n4.Lohith-malayalam\n5.Something else\n");
 	scanf("%d", &ch);
-	switch(ch)
-	{
-		case 1: op = fopen("meera-glyph.txt", "r");
-						tp = fopen("harfbuzz_Meera.ttf.txt","r");;
-						break;
-		case 2: op = fopen("rachana-glyph.txt", "r");
-            tp = fopen("harfbuzz_Rachana.ttf.txt","r");;
-            break;
-		case 3: op = fopen("suruma-glyph.txt", "r");
-            tp = fopen("harfbuzz_Suruma.ttf.txt", "r");;
-            break;
-		case 4: op = fopen("lohith-glyph.txt", "r");
-            tp = fopen("harfbuzz_Lohith-Malayalam.ttf.txt", "r");;
-            break;
-		case 5: printf("\nEnter the name of the reference words file and its correcponding glyph names' file:");
-						scanf("%s%s",wordfile,reffile);
-						printf("Enter the name of the file containing the harfbuzz renderings:");
-						scanf("%s",rendfile);
-						op = fopen(reffile, "r");
-            tp = fopen(rendfile, "r");;				
-						break;
-		default:printf("\nWell that was just wrong! Cya!\n");
-						exit(0);
-	}
+					switch(ch)
+					{
+						case 1: op = fopen("meera-glyph.txt", "r");
+										tp = fopen("harfbuzz_Meera.ttf.txt","r");;
+										break;
+						case 2: op = fopen("rachana-glyph.txt", "r");
+										tp = fopen("harfbuzz_Rachana.ttf.txt","r");;
+										break;
+						case 3: op = fopen("suruma-glyph.txt", "r");
+										tp = fopen("harfbuzz_Suruma.ttf.txt", "r");;
+										break;
+						case 4: op = fopen("lohith-glyph.txt", "r");
+										tp = fopen("harfbuzz_Lohith-Malayalam.ttf.txt", "r");;
+										break;
+						case 5: printf("\nEnter the name of the reference words file and its correcponding glyph names' file:");
+										scanf("%s%s",wordfile,reffile);
+										printf("Enter the name of the file containing the harfbuzz renderings:");
+										scanf("%s",rendfile);
+										op = fopen(reffile, "r");
+										tp = fopen(rendfile, "r");;				
+										break;
+						default:printf("\nWell that was just wrong! Cya!\n");
+										exit(0);
+					}
 	rp = fopen("result.txt", "w+"); //file to store the results of matching
   //getting the size of first file
   fseek(op, 0, SEEK_END); 
