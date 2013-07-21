@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import sys
 import os
+from sys import argv
 def renderingtest(op, tp, wp):
 	result_file = open("result.txt", 'w')
 	reference_file = op.read()
@@ -43,64 +44,24 @@ def renderingtest(op, tp, wp):
 			result_file.write(wordlist[d] + '\n')
 	result_file.close()
 	return 
-#Defining reference files for font Meera    						
-def meera():
-	op = open("meera-glyph.txt")
-	ff = "Meera.ttf"
-	tp = open("hb_meera_rendering.txt") 
-	wp = open("ml-test-cases.txt")
-	print "The font you have selected is Meera\n"
-	return op, tp, wp
-#Defining reference files for font Rachana		
-def rachana():
-	op = open("rachana-glyph.txt")
-	ff = "Rachana.ttf"
-	tp = open("hb_rachana_rendering.txt")
-	wp = open("ml-test-cases.txt")
-	print "The font you have selected Rachana\n"
-	return op, tp, wp
-#Defining reference files for font Suruma
-def suruma(): 
-	op = open("suruma-glyph.txt")
-	ff = "Suruma.ttf"
-	tp = open("hb_suruma_rendering.txt")
-	wp = open("ml-test-cases.txt")
-	print "The font you have selected is Suruma\n"
-	return op, tp, wp
-#Defining reference files for font Lohit-Malayalam
-def lohith(): 
-	op = open("lohit-glyph.txt")
-	ff = "Lohit-Malayalam.ttf"
-	tp = open("hb_lohit_rendering.txt")
-	wp = open("ml-test-cases.txt")
-	print "The font you have selected is Lohit-Malyalam\n"
-	return op, tp, wp
-#Leaving an option if the tester want to give the font and the rest of the files herself
-def somel():
-	wordfile = raw_input("\nEnter the name of the reference words file:")
-	reffile  = raw_input("\nEnter its correcponding glyph names' file:")
-	rendfile = raw_input("\nEnter the name of the file containing the harfbuzz renderings:")
-	op = open(reffile)
-	wp = open(wordfile)
-	tp = open(rendfile)
 
-ch = int(raw_input("Welcome! Select the font for rendering testing.\n1. Meera\n2. Rachana\n3. Suruma\n4. Lohit-Malayalam\n5. Something else\n"))
-choice = {1: meera, 2: rachana, 3: suruma,  4: lohith, 5: somel}
+def main():
+	if len(argv) != 4:
+		print "Correct usage is: ./rendering_testing.py	/path/to/fontfile /path/to/testcases /path/to/referencefile"
+		sys.exit()
+	script, fontfile, word_file, ref_file = argv
+	op = open(ref_file)
+	wp = open(word_file)
+	#Creating a file hb_rendering.txt with harfbuzz rendering of the provided test cases file in provided font
+	cmd = 'hb-shape ' + fontfile + ' --text-file=' + word_file + ' > hb_rendering.txt'
+	os.system(cmd)
+	tp = open("hb_rendering.txt")	
+	renderingtest(op, tp, wp) #Function to test rendering testing
+	#Generating an image file output.png with the words that are wrongly rendered
+	cmd2 = 'hb-view ' + fontfile + ' --text-file=result.txt > output.png'
+	os.system(cmd2)	
+	wp.close()
+	op.close()
+	tp.close()
 
-op, tp, wp = choice[ch]()
-renderingtest(op, tp, wp)
-#Showing the results as the output of hb-view command in output for png
-if ch == 1:
-	os.system('hb-view Meera.ttf --text-file=result.txt > output.png')
-elif ch == 2:
-  os.system('hb-view Rachana.ttf --text-file=result.txt > output.png')
-elif ch == 3:
-  os.system('hb-view Suruma.ttf --text-file=result.txt > output.png')
-elif ch == 4:
-	os.system('hb-view Lohit-Malayalam.ttf --text-file=result.txt > output.png')
-
-wp.close()
-op.close()
-tp.close()
-
-
+main()
