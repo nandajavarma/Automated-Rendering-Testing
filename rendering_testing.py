@@ -2,10 +2,10 @@
 import sys
 import os
 from sys import argv
-def renderingtest(op, tp, wp):
+def renderingtest(ref_file_pointer, rend_file_pointer, word_file_pointer):
 	result_file = open("result.txt", 'w')
-	reference_file = op.read()
-	rendered_file = tp.read()
+	reference_file = ref_file_pointer.read()
+	rendered_file = rend_file_pointer.read()
 	ref_list = []
 	rend_list = []
 	#Parsing the reference file
@@ -27,7 +27,7 @@ def renderingtest(op, tp, wp):
 			n.append(y.split('=')[0])
 		rendered_output.append(n)
 	#Opening the file with test cases
-	wordfile_content = wp.read()
+	wordfile_content = word_file_pointer.read()
 	wordlist = []
 	wordlist = wordfile_content.split('\n')
 	#Matching rendered glyph names with the reference glyph names
@@ -50,18 +50,18 @@ def main():
 		print "Correct usage is: ./rendering_testing.py	/path/to/fontfile /path/to/testcases /path/to/referencefile"
 		sys.exit()
 	script, fontfile, word_file, ref_file = argv
-	op = open(ref_file)
-	wp = open(word_file)
+	ref_file_pointer = open(ref_file)
+	word_file_pointer = open(word_file)
 	#Creating a file hb_rendering.txt with harfbuzz rendering of the provided test cases file in provided font
 	cmd = 'hb-shape ' + fontfile + ' --text-file=' + word_file + ' > hb_rendering.txt'
 	os.system(cmd)
-	tp = open("hb_rendering.txt")	
-	renderingtest(op, tp, wp) #Function to test rendering testing
+	rend_file_pointer = open("hb_rendering.txt")	
+	renderingtest(ref_file_pointer, rend_file_pointer, word_file_pointer) #Function to test rendering testing
 	#Generating an image file output.png with the words that are wrongly rendered
 	cmd2 = 'hb-view ' + fontfile + ' --text-file=result.txt > output.png'
 	os.system(cmd2)	
-	wp.close()
-	op.close()
-	tp.close()
+	word_file_pointer.close()
+	ref_file_pointer.close()
+	rend_file_pointer.close()
 
 main()
