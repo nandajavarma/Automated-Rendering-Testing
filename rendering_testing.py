@@ -91,15 +91,18 @@ def main():
 			test_file.write('\t' + rline + '\t\t\t' + "Rendering is correct" + '\n')
 		j = j + 1
 	#Generating an image file output.png with the words that are wrongly rendered
-	
-	res_file = codecs. open('test_result.txt', encoding = 'utf-8', errors = 'ignore')
-	read_result = res_file.read()
-	k = 1
-	for oneline in read_result.split('\n'):
-		for oneword in oneline:
-			cmd2 = 'hb-view ' + fontfile + ' ' + oneword + ' > %d' % k + '.png'
-			k = k + 1
-			os.system(cmd2)	
+	cmd3 = 	'hb-view ' + fontfile + '  --text-file=result.txt > output.png'
+	os.system(cmd3)
+	#Generating a hb-view ouput for test_result.txt
+	#res_file = codecs. open('test_result.txt', encoding = 'utf-8', errors = 'ignore')
+#	read_result = res_file.read()
+#	k = 1
+#	os.system('mkdir wrong_renderings')
+#	for oneline in read_result.split('\n'):
+#		for oneword in oneline:
+#			cmd2 = 'hb-view ' + fontfile + ' ' + oneword + ' > wrong_renderings/%d' % k + '.png'
+#			k = k + 1
+#			os.system(cmd2)	
 	ref_file_pointer.close()
 	rend_file_pointer.close()
 	word_file_pointer.close()
