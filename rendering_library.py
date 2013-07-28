@@ -4,6 +4,7 @@ import os
 import codecs
 from sys import argv
 from array import *
+
 def renderingtest(ref_file_pointer, rend_file_pointer, word_file_pointer):
 	result_file = open("result.txt", 'w')
 	reference_file = ref_file_pointer.read()
@@ -39,7 +40,7 @@ def renderingtest(ref_file_pointer, rend_file_pointer, word_file_pointer):
 		print "\nNo rendering problems found!"
 		sys.exit()
 	else:
-		print "\nRendering problems detected.\nSee the file test_result.txt for rendering status of each word and output.png for rendering mistakes.\n"
+		print "\nRendering problems detected.\nSee the file test_result.txt for rendering status of each word.\n"
 		a = array('i', [])
 	#Finding the wrongly rendered words from the test cases file and writing it to result.txt
 		for word in result_list:	
@@ -49,25 +50,8 @@ def renderingtest(ref_file_pointer, rend_file_pointer, word_file_pointer):
 	result_file.close()
 	return a, wordlist
 
-def main():
-	if len(argv) != 4:
-		print "Correct usage is: ./rendering_testing.py	/path/to/fontfile /path/to/testcases /path/to/referencefile"
-		sys.exit()
-	script, fontfile, word_file, ref_file = argv
-	ref_file_pointer = open(ref_file)
-	word_file_pointer = open(word_file)
-	choice = raw_input("\nDo you want to test the rendering with harfbuzz engine? [y/n] (y by default):").lower()
-	if choice == 'n':
-		renderingfile = raw_input("\nName of the file with the rendering engine output of the chosen test cases:")
-		rend_file_pointer = open(renderingfile)
-	else:
-		#Creating a file hb_rendering.txt with harfbuzz rendering of the provided test cases file in provided font
-		cmd = 'hb-shape ' + fontfile + ' --text-file=' + word_file + ' > hb_rendering.txt'
-		os.system(cmd)
-		rend_file_pointer = open("hb_rendering.txt")	
-	#Function to test rendering testing
-	a, wordlist = renderingtest(ref_file_pointer, rend_file_pointer, word_file_pointer) 
 	#Generating a file test_result.txt with all test cases and its rendering status
+def get_result(a, wordlist,ch, fontfile):
 	test_file = open("test_result.txt", 'w')
 	test_file.write("Number\tWord\t\t\tRendering status\n\n")
 	j = 1	
@@ -91,22 +75,38 @@ def main():
 			test_file.write('\t' + rline + '\t\t\t' + "Rendering is correct" + '\n')
 		j = j + 1
 	#Generating an image file output.png with the words that are wrongly rendered
-	cmd3 = 	'hb-view ' + fontfile + '  --text-file=result.txt > output.png'
-	os.system(cmd3)
-	#Generating a hb-view ouput for test_result.txt
-	#res_file = codecs. open('test_result.txt', encoding = 'utf-8', errors = 'ignore')
-#	read_result = res_file.read()
-#	k = 1
-#	os.system('mkdir wrong_renderings')
-#	for oneline in read_result.split('\n'):
-#		for oneword in oneline:
-#			cmd2 = 'hb-view ' + fontfile + ' ' + oneword + ' > wrong_renderings/%d' % k + '.png'
-#			k = k + 1
-#			os.system(cmd2)	
-	ref_file_pointer.close()
-	rend_file_pointer.close()
-	word_file_pointer.close()
+	if ch != 'n':
+		cmd3 = 	'hb-view ' + fontfile + '  --text-file=result.txt > output.png'
+		os.system(cmd3)
+		print "output.png gives the rendering mistakes by harfbuzz.\n"
 	test_file.close()
-#	res_file.close()
 	return 0
-main()
+
+
+def main():
+	if len(argv) != 4:
+		print "Correct usage is: ./rendering_testing.py	/path/to/fontfile /path/to/testcases /path/to/referencefile"
+		sys.exit()
+	script, fontfile, word_file, ref_file = argv
+	ref_file_pointer = open(ref_file)
+	word_file_pointer = open(word_file)
+	choice = raw_input("\nDo you want to test the rendering with harfbuzz engine? [y/n] (y by default):").lower()
+	if choice == 'n':
+		renderingfile = raw_input("\nName of the file with the rendering engine output of the chosen test cases:")
+		rend_file_pointer = open(renderingfile)
+	else:
+		#Creating a file hb_rendering.txt with harfbuzz rendering of the provided test cases file in provided font
+		cmd = 'hb-shape ' + fontfile + ' --text-file=' + word_file + ' > hb_rendering.txt'
+		os.system(cmd)
+		rend_file_pointer = open("hb_rendering.txt")	
+		return ref_file_pointer, rend_file_pointer, word_file_pointer, choice, fontfile
+
+
+ref_file_pointer, rend_file_pointer, word_file_pointer, ch, fontfile = main()
+a, wordlist = renderingtest(ref_file_pointer, rend_file_pointer, word_file_pointer) 
+get_result(a,wordlist,ch, fontfile)
+ref_file_pointer.close()
+rend_file_pointer.close()
+word_file_pointer.close()
+
+
