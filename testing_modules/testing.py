@@ -41,7 +41,7 @@ def renderingtest(ref_file_pointer, rend_file_pointer, word_file_pointer):
   #Finding the wrongly rendered words from the test cases file and writing it to result.txt
     for word in result_list:
       d = ref_list.index(word)
-      result_file.write("%d" % d + ". " + wordlist[d] + '\n')
+      result_file.write("%d " % (d+1)  + wordlist[d] + '\n')
       a.append(d)
   result_file.close()
   return a, wordlist
