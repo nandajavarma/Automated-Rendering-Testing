@@ -36,7 +36,7 @@ def renderingtest(ref_file_pointer, rend_file_pointer, word_file_pointer, error_
     print "\nNo rendering problems found!"
     sys.exit()
   else:
-    print "\nRendering problems observed.\nSee the file " + test_file + " for rendering status of each word and " + error_file + " for the list of wrongly rendered words only.\n"
+    print "\nRendering problems observed!\nSee the file " + test_file + " for rendering status of each word and " + error_file + " for the list of wrongly rendered words only.\n"
     a = array('i', [])
   #Finding the wrongly rendered words from the test cases file and writing it to result.txt
     for word in result_list:
