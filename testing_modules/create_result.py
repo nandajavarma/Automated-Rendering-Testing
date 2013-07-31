@@ -1,9 +1,8 @@
 #Generating a file test_result.txt with all test cases and its rendering status
 from array import *
 import sys
-def get_result(a, wordlist,ch, fontfile):
-  test_file = open("test_result.txt", 'w')
-  test_file.write("Number\tWord\t\t\tRendering status\n\n")
+def get_result(a, wordlist,ch, fontfile, res_file_pointer):
+  res_file_pointer.write("Number\tWord\t\t\tRendering status\n\n")
   j = 1
   res = array('i', [])
   for rline in wordlist:
@@ -18,12 +17,12 @@ def get_result(a, wordlist,ch, fontfile):
       res.insert(k, 1)
     else:
       res.insert(k, 0)
-    test_file.write('%d' % (j))
+    res_file_pointer.write('%d' % (j))
     if res[j - 1 ] == 1:
-      test_file.write('\t'+ rline + '\t\t\t' + "Rendering is wrong" + '\n')
+      res_file_pointer.write('\t'+ rline + '\t\t\t' + "Rendering is wrong" + '\n')
     else:
-      test_file.write('\t' + rline + '\t\t\t' + "Rendering is correct" + '\n')
+      res_file_pointer.write('\t' + rline + '\t\t\t' + "Rendering is correct" + '\n')
     j = j + 1
-  test_file.close()
+  res_file_pointer.close()
   return 0
 
