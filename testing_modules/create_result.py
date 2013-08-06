@@ -19,9 +19,9 @@ def get_result(a, wordlist,ch, fontfile, res_file_pointer):
       res.insert(k, 0)
     res_file_pointer.write('%d' % (j))
     if res[j - 1 ] == 1:
-      res_file_pointer.write('\t'+ rline + '\t\t\t' + "Rendering is wrong" + '\n')
+      res_file_pointer.write('\t'+ rline + '\t\t\t' + "No" + '\n')
     else:
-      res_file_pointer.write('\t' + rline + '\t\t\t' + "Rendering is correct" + '\n')
+      res_file_pointer.write('\t' + rline + '\t\t\t' + "Yes" + '\n')
     j = j + 1
   res_file_pointer.close()
   return 0
