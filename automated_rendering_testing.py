@@ -3,16 +3,20 @@ import sys
 import os
 import testing_modules 
 from array import *
-os.system('clear')
 #Function to check if the file opens correctly
 def open_file(file_name, descriptor):
 	try:
 		file_pointer = open(file_name, descriptor)
 	except:
-		print "Could not open the file " + file_name
-		sys.exit()
+		ch = raw_input("\nCould not open the file '" + file_name + "'. Do you want to try again? (Y/N): ").lower()
+		if ch == 'n':
+			sys.exit()
+		else:
+			framework()
 	return file_pointer
+
 def framework():
+	os.system('clear')
 	choice = raw_input("\n\t\tAutomated Rendering testing\n \t\t---------------------------\nAre you trying to test rendering by harfbuzz?[y/n](y by default): ").lower()
 	fontfile = raw_input("\nPath to the font file(in .ttf format): ")
 	font_file_pointer = open_file(fontfile, 'r')
@@ -60,4 +64,5 @@ def framework():
 	return
 
 if __name__  == '__main__':
-	framework()
+	if len(sys.argv) == 1:
+		framework()

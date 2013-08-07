@@ -1,2 +1,2 @@
 from create_result import get_result
-from testing import renderingtest 
+from test import renderingtest 
