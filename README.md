@@ -25,8 +25,7 @@ Now that you have all the necessary files, run the script automatedrenderingtest
 
 ./automatedrenderingtesting.py
 
-It will ask for the engine of your choice. Then ask for the test cases file, followed by font file and reference file. If you choose harfb
-uzz as the engine you need not bother about the rendered outputs' file otherwise you will bee prompted to provide this as well.
+It will ask for the engine of your choice. Then ask for the test cases file, followed by font file and reference file. If you choose harfbuzz as the engine you need not bother about the rendered outputs' file otherwise you will bee prompted to provide this as well.
 
 Then it will do the comparisons and the ouputs will be stored inside the files you specify. In the case of harfbuzz engine, you will also get the image of the wrong renderings inside the directory you specify.
  
