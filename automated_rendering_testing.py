@@ -44,7 +44,7 @@ def framework():
 	for i in a:
 		b.append(i)
 	#calling function to generate the results file
-	testing_modules.get_result(a, wordlist, choice, fontfile, res_file_pointer)
+	testing_modules.get_result(a, wordlist, res_file_pointer)
 	if choice == 'n':
 		sys.exit()
 	#Storing the wrong renderings' images in a specified directory

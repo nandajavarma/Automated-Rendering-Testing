@@ -17,6 +17,7 @@ def renderingtest(ref_file_pointer, rend_file_pointer, word_file_pointer, result
       for a_glyph in opt_list:
         oneword = a_glyph.split(',')
         optional_list.append(oneword)
+    print optional_array
     aword = aline.split(',')
     ref_list.append(aword)
 	#Parsing the harfbuzz renderings' file
@@ -50,9 +51,11 @@ def renderingtest(ref_file_pointer, rend_file_pointer, word_file_pointer, result
       a.append(d)
   common_words_index = list(set(a).intersection(set(optional_array)))
   for each_term, value in zip(optional_list, common_words_index):
+    print each_term
+    print value
+    print 'end'
     correct_renderings = list(set(rendered_output[value]).intersection(set(each_term)))
     if correct_renderings != []:
-      result_list.pop(value)
       a.remove(value)
   for position in a:
     result_file.write("%d " % (position+1)  + wordlist[position] + '\n')

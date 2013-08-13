@@ -1,7 +1,7 @@
 #Generating a file test_result.txt with all test cases and its rendering status
 from array import *
 import sys
-def get_result(a, wordlist,ch, fontfile, res_file_pointer):
+def get_result(a, wordlist, res_file_pointer):
   res_file_pointer.write("Number\tWord\t\t\tRendering status\n\n")
   j = 1
   res = array('i', [])
