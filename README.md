@@ -12,30 +12,34 @@ Files required to test using this framework:
 3. File with rendering outputs by engines
 4. Font file in ttf format
 
-Create a test cases file that consists of all the words that you wish to test the rendering for. Along with this create the reference file that contains the correct glyph names of the words in the test cases file in a particular font. The framework assumes that the glyph names are in the following format:
+Create a test cases file that consists of all the words that you wish to test the rendering for. 
+Here is a sample test cases file created for Malayalam lamguage: https://github.com/nandajavarma/Automated-Rendering-Testing/blob/master/ml-test-cases.txt
+
+Along with this create the reference file that contains the correct glyph names of the words in the test cases file in a particular font. The framework assumes that the glyph names are in the following format:
 [glyph_name1,glyph_name2,glyph_name3,..,glyph_nameN]
 
 Now if the word has more than one correct rendering, provide the next correct one along with this seperated by a semi colon.
 For eg: [glyph_name1,glyph_name2,glyph_name3,..,glyph_nameN];[glyph_name1,glyph_name2...,glyph_nameN];..
-Here is a sample: 
+Here is the reference file for the above mentioned test cases file in the font Rachana: https://github.com/nandajavarma/Automated-Rendering-Testing/blob/master/rachana-glyph.txt
 
-Now the file with rendering outputs. If the engine you are testing for is Harfbuzz, you need not create this file. The framework considers Harfbuzz as default engine and generate this file automatically. 
+Now the file with rendering outputs. If the engine you are testing for is Harfbuzz, you can create this file using the script generate_hb_rendering.py. Run:
+	./generate_hb_rendering.py -t text_file -f font_file -o output_file
 If that is not the case, you will have to create it for the font you wish and the rendering of each word must be in the form:
 [glyph_name1|glyph_name2|..]
-Here is a sample: 
+Here is the harfbuzz rendering of the above mentioned test cases file in font Rachana: https://github.com/nandajavarma/Automated-Rendering-Testing/blob/master/hb_rachana_rendering.txt
 
 Now that you have all the necessary files, run the script rendering_testing.py with all the file names as parameters.
 
-			./rendering_testing.py [-h] [-v] -w WORD_LIST_FILE -r REFERENCE_FILE -t
-                            RENDERED_OUTPUT_FILE [-o OUTPUT_FILE]
-                            [-e ERROR_FILE] [-f FONT_FILE] [-m DIRNAME]
+	./rendering_testing.py [-h] [-v] -w WORD_LIST_FILE -r REFERENCE_FILE -t
+                            RENDERED_OUTPUT_FILE -o OUTPUT_FILE -e ERROR_FILE
+                            -f FONT_FILE [-m DIRNAME]
 For more info run:
 
-		 	./rendering_testing.py -h 
+	./rendering_testing.py -h 
 
 Alternatively, one can test using this framework by running:
     
-      ./automatedrenderingtesting.py
+	./automatedrenderingtesting.py
 
 It will ask for the engine of your choice. Then ask for the test cases file, followed by font file and reference file. If you choose harfbuzz as the engine you need not bother about the rendered outputs' file otherwise you will be prompted to provide this as well.
 
