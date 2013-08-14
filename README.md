@@ -1,11 +1,9 @@
 Automated-Rendering-Testing
 ===========================
 
-GSoC'13 project
+A framework to test the correctness of output by rendering engines.
 
-This is a framework that can be used to test the correctness of output by rendering engines.
-
-Files required to test using this framework:
+Files required to test rendering using this framework:
 
 1. Test cases file
 2. Reference file for a specific font
@@ -45,6 +43,6 @@ It will ask for the engine of your choice. Then ask for the test cases file, fol
 
 Then it will do the comparisons and the ouputs will be stored inside the files you specify. In the case of harfbuzz engine, you will also get the image of the wrong renderings inside the directory you specify.
  
-(In the repo I have created samples in four Malayalam fonts. Test cases file being ml-test-cases.txt and reference file being rachana-glyph.txt, suruma-glyph.txt, lohit-glyph.txt and meera-glyph.txt for fonts Rachana, Suruma, Lohit-Malayalam and Meera respectively)
+(In the repo one can find samples in four Malayalam fonts. Test cases file being ml-test-cases.txt and reference file being rachana-glyph.txt, suruma-glyph.txt, lohit-glyph.txt and meera-glyph.txt for fonts Rachana, Suruma, Lohit-Malayalam and Meera respectively)
 
 
