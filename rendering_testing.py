@@ -4,7 +4,7 @@ import argparse
 import os
 import testing_modules
 from array import *
-
+#Checking error status of files
 def open_file(file_name, descriptor):
   try:
     file_pointer = open(file_name, descriptor)
@@ -13,7 +13,7 @@ def open_file(file_name, descriptor):
     sys.exit()
   return file_pointer
 parser = argparse.ArgumentParser(version='1.0')
-
+#parsing the files passed as parameters
 parser.add_argument('-w', dest='word_list_file', help='File with all the words', type=argparse.FileType('rt'), required=True)
 parser.add_argument('-r', dest='reference_file', help='Reference file for the specified font', type=argparse.FileType('rt'), required=True)
 parser.add_argument('-t', dest='rendered_output_file', help='File with the output of rendering engine', type=argparse.FileType('rt'), required=True)
@@ -28,14 +28,17 @@ except IOError, msg:
 	parser.error(str(msg))
 error_file_pointer = open_file(args.error_file, "w")
 output_file_pointer = open_file(args.output_file, "w")
+#Calling function to test the engine
 a, wordlist, f = testing_modules.renderingtest(args.reference_file, args.rendered_output_file, args.word_list_file, error_file_pointer)
 if f == 1:
   print "\nRendering problems observed!\nSee the file " + args.output_file + " for rendering status of each word and " + args.error_file + " for the list of wrongly rendered words only.\n"
+#Creating a copy of the index of wrongly rendered words
   b = array('i',[])
   for i in a:
     b.append(i)
   #calling function to generate the results file
   testing_modules.get_result(a, wordlist, output_file_pointer)
+	#Assuming the engine would be harfbuzz if a directory name is provided
   if args.dirname:
     cmd1 = 'mkdir ' + args.dirname
     os.system(cmd1)
