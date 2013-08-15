@@ -26,7 +26,7 @@ try:
 	results = parser.parse_args()
 except IOError, msg:
 	parser.error(str(msg))
-error_file_pointer = open_file(args.output_file, "w")
+error_file_pointer = open_file(args.error_file, "w")
 output_file_pointer = open_file(args.output_file, "w")
 a, wordlist, f = testing_modules.renderingtest(args.reference_file, args.rendered_output_file, args.word_list_file, error_file_pointer)
 if f == 1:
