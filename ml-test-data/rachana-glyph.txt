@@ -16,7 +16,7 @@
 [n1rh,xx,r3]
 [uni25CC,uni0D3E]
 [space,uni25CC,uni0D3F]
-[uni25CC,u1]
+[space,uni25CC,u1]
 [y1k1]
 [y1k1k1]
 [y1th1]
