@@ -86,6 +86,7 @@ h4 {
 margin:0 auto;
 width:400px;
 padding:14px;
+height: 400px;
 }
 
 /* ----------- stylized ----------- */
@@ -135,6 +136,7 @@ width:125px;
 height:31px;
 background:#666666 url(img/button.png) no-repeat;
 text-align:center;
+float: center;
 line-height:31px;
 color:#FFFFFF;
 font-size:11px;

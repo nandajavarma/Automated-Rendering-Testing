@@ -6,19 +6,19 @@
 	<div id="stylized" class="myform">
 	<form action="" method=post id="form">
 			<label for="fontfile">Font file<em>*</em></label>
-      <input type="text" name=fontfile size=30 value="{{ request.form.fontfile }}"/>
-			<label for="testcases">Test cases file<em>*</em></legend>
-      <input type="text" name=testcases size=30 value="{{ request.form.testcases }}"  />
+      <input type="text" name=fontfile size=30 value="{{ request.form.fontfile }}"/><br/>
+			<label for="testcases">Test cases file<em>*</em></label>
+      <input type="text" name=testcases size=30 value="{{ request.form.testcases }}"  /><br/>
 			<label for="referencefile">Reference file<em>*</em></label>
-      <input type="text" name=referencefile size=30 value="{{ request.form.referencefile }}" />
+      <input type="text" name=referencefile size=30 value="{{ request.form.referencefile }}" /><br/>
 			<label for="renderedoutput">Rendered output<em>*</em></label>
-			<input type="text" name=renderedoutput size=30 value="{{ request.form.renderedoutput }}" />
-			<label for="outputfile">Output file<em>*</em></legend>
-      <input type="text" name=outputfile size=30 value="{{ request.form.outputfile }}" />
+			<input type="text" name=renderedoutput size=30 value="{{ request.form.renderedoutput }}" /><br/>
+			<label for="outputfile">Output file<em>*</em></label>
+      <input type="text" name=outputfile size=30 value="{{ request.form.outputfile }}" /><br/>
 			<label for="errorfile">Error file<em>*</em></label>
-      <input type="text" name=errorfile size=30 value="{{ request.form.errorfile }}" />
+      <input type="text" name=errorfile size=30 value="{{ request.form.errorfile }}" /></br/>
 			<label for="directory">Directory<em>*</em></label>
-      <input type="text" name=directory size=30 value="{{ request.form.directory }}" />
+      <input type="text" name=directory size=30 value="{{ request.form.directory }}" /><br/>
 			<a href="{{url_for('test')}}"><input type="submit" value="Test"/></a>
 	</form>
 {% endblock %}
