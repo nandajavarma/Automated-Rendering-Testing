@@ -65,7 +65,7 @@ except IOError as msg:
 error_fp = open_file(args.error_file, "w")
 output_fp = open_file(args.output_file, "w")
 # Calling function to test the engine
-a, wordlist, f = testing_modules.renderingtest(
+a, wordlist, f = testing_modules.main(
     args.ref_file, args.hb_rendering, args.word_file, error_fp)
 if f == 1:
     print "\nRendering problems observed!\n"
