@@ -207,7 +207,7 @@
 [v1,i1,l3,v2,a2,th3r3,i1]
 [e1,v1,nhm1]
 [z1r3u1,th1,i1]
-[z1,a2,r3cil2,ngxx,k3,p1,k1sh,i1]
+[z1,a2,r3cil2,ngxx,k3,p1,k1sh,i1];[z1,a2,r3cil2,ng,xx,k3,p1,k1sh,i1]
 [s1,m1,y2,k1,xx]
 [s1,anuswara,r3,anuswara,p4,anuswara]
 [s1,m1r3,a2,t1t1,xx]
