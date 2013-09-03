@@ -5,10 +5,8 @@ body {
   color: #333;
 }
 
-/*
- * Create dark grey header with a white logo
- */
- 
+/*Header in black color*/
+
 header {
   background-color: #2B2B2B;
   height: 35px;
@@ -17,9 +15,7 @@ header {
   margin-bottom: 10px;
 }
 
-/*
- * Center the body content
- */
+/* The body content in a block*/
  
 .container {
   width: 940px;
@@ -57,88 +53,115 @@ h4 {
 	font-size: 1.7em;
 	font-weight: 100;
 	margin-top: 20px;
-  text-align: left;
+    text-align: left;
 	letter-spacing: -2px;
 	color: #000000;
 }
-/*
- * Display navigation links inline
- */
+
+/*Display navigation links inline*/
  
 .menu {
-  float: right;
-  margin-top: 8px;
+	float: right;
+	margin-top: 8px;
 }
  
 .menu li {
-  display: inline;
+	display: inline;
 }
  
 .menu li + li {
-  margin-left: 35px;
+	margin-left: 35px;
 }
  
 .menu li a {
-  color: #999;
-  text-decoration: none;
-}
-.myform{
-margin:0 auto;
-width:400px;
-padding:14px;
-height: 400px;
+	color: #999;
+ 	text-decoration: none;
 }
 
-/* ----------- stylized ----------- */
-#stylized{
-border:solid 2px #b7ddf2;
-background:#ebf4fb;
+#testing-form {
+    background-color: #F2F7F9;
+    width: 465px;
+	height: 600px;
+    padding:20px;
+    margin: 50px auto;
+	margin-top: 0px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    position: relative;
 }
-#stylized h1 {
-font-size:14px;
-font-weight:bold;
-margin-bottom:8px;
+
+#testing-form input, 
+#testing-form select, 
+#testing-form textarea, 
+#testing-form label {
+    font-size: 20px;
+    margin-bottom: 2px;
 }
-#stylized p{
-font-size:11px;
-color:#666666;
-margin-bottom:20px;
-border-bottom:solid 1px #b7ddf2;
-padding-bottom:10px;
+
+#testing-form input, 
+#testing-form select, 
+#testing-form textarea {
+    width: 450px;
+    border: 1px solid #CEE1E8;
+    margin-bottom: 20px;
+    padding: 4px;
 }
-#stylized label{
-display:block;
-font-weight:bold;
-text-align:right;
-width:140px;
-float:left;
+
+#testing-form input: focus, 
+#testing-form select: focus, 
+#testing-form textarea: focus {
+    border: 1px solid #AFCDD8;
+    background-color: #EBF2F4;
 }
-#stylized .small{
-color:#666666;
-display:block;
-font-size:11px;
-font-weight:normal;
-text-align:right;
-width:140px;
+
+#testing-form textarea {
+    height: 150px;
+    resize: none;
 }
-#stylized input{
-float:left;
-font-size:12px;
-padding:4px 2px;
-border:solid 1px #aacfe4;
-width:200px;
-margin:2px 0 20px 10px;
+
+#testing-form label {
+    display: block;
 }
-#stylized button{
-clear:both;
-margin-left:150px;
-width:125px;
-height:31px;
-background:#666666 url(img/button.png) no-repeat;
-text-align:center;
-float: center;
-line-height:31px;
-color:#FFFFFF;
-font-size:11px;
-font-weight:bold;
+
+#testing-form #submit-button {
+    width: 100px;
+    color: #000;
+    border: none;
+    display: block;
+    float: right;
+    margin-bottom: 0px;
+    margin-right: 6px;
+    background-color: #8FB5C1;
+    -moz-border-radius: 8px;
 }
+
+#testing-form #submit-button: hover {
+    background-color: #A6CFDD;
+}
+
+#testing-form #submit-button: active {
+    position: relative;
+    top: 1px;
+}
+
+/* Normalize placeholder styles */
+
+/* chrome, safari */
+::-webkit-input-placeholder {
+    color: #CCC;
+    font-style: italic;
+}
+
+/* mozilla */
+input: -moz-placeholder, textarea: -moz-placeholder {
+    color: #CCC;
+    font-style: italic;
+}
+
+/* ie (faux placeholder) */
+input.placeholder-text, textarea.placeholder-text  { 
+    color: #CCC;
+    font-style: italic;
+}
+
