@@ -8,7 +8,7 @@
 [k1th1]
 [p1r3]
 [e2,k3th3th4r3,a2]
-[k1th1r3]
+[k1th1r3];[k1th1,xx,r3];[r4,k1th1]
 [ml_e,t1,a2,a2,a2,a2]
 [ml_e,t1,a2,a2,a2,a2,a2,a2,a2,a2]
 [k1s1]
