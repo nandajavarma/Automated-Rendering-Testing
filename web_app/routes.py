@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import os
  
 app = Flask(__name__)      
@@ -7,7 +7,7 @@ app = Flask(__name__)
 def home():
   return render_template('home.html')
 
-@app.route('/test', methods=['POST'])
+@app.route('/test', methods=['POST', 'GET'])
 def test():
 	ff = request.form['fontfile']
 	wf = request.form['testcases']
@@ -16,8 +16,7 @@ def test():
 	outfile = request.form['outputfile']
 	errorfile = request.form['errorfile']
 	mydir = request.form['directory']
-	os.system('./renderingtesting.py -w wf -r rf it rendf -o outfile -e errorfile -f ff -m mydir')
-	return
+	return render_template('success.html')
 
 @app.route('/about')
 def about():
