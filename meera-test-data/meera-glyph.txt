@@ -136,7 +136,7 @@
 [ml_r,th1u1]
 [ml_rr,n1n1,xx]
 [ml_l,k1,a2,r3,anuswara]
-[ml_l1,th1,anuswara]
+[ml_ll,th1,anuswara]
 [ml_e,e1,n1rh]
 [ml_e,n1cil2,e2,rh,a2,lhcil2]
 [ml_ee,l3,anuswara]
