@@ -30,7 +30,7 @@ parser.add_argument(
     required=True)
 parser.add_argument(
     '-t',
-    dest='hb_rendering',
+    dest='rendered_output',
     help='Rendering output by the engine',
     type=argparse.FileType('rt'),
     required=True)
@@ -66,7 +66,7 @@ error_fp = open_file(args.error_file, "w")
 output_fp = open_file(args.output_file, "w")
 # Calling function to test the engine
 a, wordlist, f = testing_modules.main(
-    args.ref_file, args.hb_rendering, args.word_file, error_fp)
+    args.ref_file, args.rendered_output, args.word_file, error_fp)
 if f == 1:
     print "\nRendering problems observed!\n"
     print args.output_file + " shows rendering status of each word.\n"
@@ -90,6 +90,6 @@ if f == 1:
             " directory gives the images of wrongly rendered words.\n"
 args.word_file.close()
 args.ref_file.close()
-args.hb_rendering.close()
+args.rendered_output.close()
 output_fp.close()
 error_fp.close()
