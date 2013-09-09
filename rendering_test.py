@@ -20,8 +20,7 @@ parser.add_argument(
     '-w',
     dest='word_file',
     help='Test cases file',
-    type=argparse.FileType('rt'),
-    required=True)
+    type=argparse.FileType('rt'))
 parser.add_argument(
     '-r',
     dest='ref_file',
@@ -38,20 +37,17 @@ parser.add_argument(
     '-o',
     dest='output_file',
     help='Name for output file',
-    action='store',
-    required=True)
+    action='store')
 parser.add_argument(
     '-e',
     dest='error_file',
     help='File to store the wrong renderings',
-    action='store',
-    required=True)
+    action='store')
 parser.add_argument(
     '-f',
     dest='font_file',
     help='Font file in .ttf format',
-    action='store',
-    required=True)
+    action='store')
 parser.add_argument(
     '-m',
     dest='dirname',
@@ -62,34 +58,43 @@ try:
     results = parser.parse_args()
 except IOError as msg:
     parser.error(str(msg))
-error_fp = open_file(args.error_file, "w")
-output_fp = open_file(args.output_file, "w")
+if args.output_file:
+    output_fp = open_file(args.output_file, "w")
 # Calling function to test the engine
 a, wordlist, f = testing_modules.main(
-    args.ref_file, args.rendered_output, args.word_file, error_fp)
+    args.ref_file, args.rendered_output, args.word_file, args.error_file)
 if f == 1:
     print "\nRendering problems observed!\n"
-    print args.output_file + " shows rendering status of each word.\n"
-    print args.error_file + " shows the list of wrongly rendered words.\n"
-# Creating a copy of the index of wrongly rendered words
+    # Creating a copy of the index of wrongly rendered words
     b = array('i', [])
     for i in a:
         b.append(i)
-    # calling function to generate the results file
-    testing_modules.get_result(a, wordlist, output_fp)
+    if args.output_file:
+        if args.word_file:
+            print "File '" + args.output_file + "' shows the rendering status of each word\n"
+            # calling function to generate the results file
+            testing_modules.get_result(a, wordlist, output_fp)
+            output_fp.close()
+        else:
+            print "No test cases file provided! Cannot create output file\n"
+    if args.error_file:
+        if args.word_file:
+            print "File '" + args.error_file + "' shows the list of wrongly rendered words\n"
+        else:
+            print "No test cases file provided! Cannot create error file\n"
     # Assuming the engine would be harfbuzz if a directory name is provided
     if args.dirname:
-        cmd1 = 'mkdir ' + args.dirname
-        os.system(cmd1)
-        for i in b:
-            cmd2 = 'hb-view ' + args.font_file + ' ' + \
-                wordlist[i] + ' > ' + args.dirname + \
-                '/' + '%d' % (i + 1) + '.png'
-            os.system(cmd2)
-        print "\n" + args.dirname + \
-            " directory gives the images of wrongly rendered words.\n"
-args.word_file.close()
+        if args.font_file:
+            cmd1 = 'mkdir ' + args.dirname
+            os.system(cmd1)
+            for i in b:
+                cmd2 = 'hb-view ' + args.font_file + ' ' + \
+                    wordlist[i] + ' > ' + args.dirname + \
+                    '/' + '%d' % (i + 1) + '.png'
+                os.system(cmd2)
+            print "\nDirectory '" + args.dirname + \
+                "' shows the images of wrongly rendered words\n"
+        else:
+            print "No font file provided! Cannot create images of words rendered wrongly"  
 args.ref_file.close()
 args.rendered_output.close()
-output_fp.close()
-error_fp.close()

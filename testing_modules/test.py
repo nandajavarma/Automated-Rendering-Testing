@@ -49,10 +49,8 @@ def rendering_parse(rend_pointer):
 
 def render_test(test_case, ref_list, hb_out):
     #compares rendered output and reference glyphs
-    wordfile_content = test_case.read()
-    wordlist = []
-    wordlist = wordfile_content.split('\n')
     result_list = []
+    wordlist = []
     result_list = [i for i, j in zip(ref_list, hb_out) if i != j]
     if result_list == []:
         print "\nNo rendering problems found!"
@@ -63,7 +61,10 @@ def render_test(test_case, ref_list, hb_out):
         for word in result_list:
             d = ref_list.index(word)
             a.append(d)
-    test_case.close()
+    if test_case:
+        wordfile_content = test_case.read()
+        wordlist = wordfile_content.split('\n')
+        test_case.close()
     return a, wordlist, f
 
 
@@ -84,8 +85,10 @@ def multiple_render_check(a, glyph_array, multiple_glyphs, hb_out):
 
 def get_result(a, wordlist, result_file):
     #writes result to the result_file
+    result_fp = open(result_file,'w')
     for position in a:
-        result_file.write("%d " % (position + 1) + wordlist[position] + '\n')
+        result_fp.write("%d " % (position + 1) + wordlist[position] + '\n')
+    result_fp.close()
     return
 
 
@@ -94,5 +97,6 @@ def main(ref_pointer, rend_pointer, test_case, result_file):
     hb_out = rendering_parse(rend_pointer)
     a, wordlist, f = render_test(test_case, ref_list, hb_out)
     a = multiple_render_check(a, glyph_array, multiple_glyphs, hb_out)
-    get_result(a, wordlist, result_file)
+    if test_case and result_file:
+        get_result(a, wordlist, result_file)
     return a, wordlist, f
