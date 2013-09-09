@@ -71,7 +71,8 @@ if f == 1:
         b.append(i)
     if args.output_file:
         if args.word_file:
-            print "File '" + args.output_file + "' shows the rendering status of each word\n"
+            print "File '" + args.output_file + \
+                "' shows the rendering status of each word\n"
             # calling function to generate the results file
             testing_modules.get_result(a, wordlist, output_fp)
             output_fp.close()
@@ -79,7 +80,8 @@ if f == 1:
             print "No test cases file provided! Cannot create output file\n"
     if args.error_file:
         if args.word_file:
-            print "File '" + args.error_file + "' shows the list of wrongly rendered words\n"
+            print "File '" + args.error_file + \
+                "' shows the list of wrongly rendered words\n"
         else:
             print "No test cases file provided! Cannot create error file\n"
     # Assuming the engine would be harfbuzz if a directory name is provided
@@ -95,6 +97,7 @@ if f == 1:
             print "\nDirectory '" + args.dirname + \
                 "' shows the images of wrongly rendered words\n"
         else:
-            print "No font file provided! Cannot create images of words rendered wrongly"  
+            print "No font file provided! \
+                Cannot create images of wrongly rendered words"
 args.ref_file.close()
 args.rendered_output.close()

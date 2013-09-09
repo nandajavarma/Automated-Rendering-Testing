@@ -3,7 +3,7 @@ from array import *
 
 
 def ref_parse(ref_pointer):
-    #Parses the reference file and check for mutiple renderings.
+    # Parses the reference file and check for mutiple renderings.
     reference_file = ref_pointer.read()
     ref_list = []
     ref_lines = reference_file.replace('[', '').replace(']', '')
@@ -15,7 +15,7 @@ def ref_parse(ref_pointer):
     for aline in clean_file:
         if aline.find(';') != -1:
             optional_list = []
-            #glyph array has index of words with multiple renderings
+            # glyph array has index of words with multiple renderings
             glyph_array.append(clean_file.index(aline))
             opt_list = aline.split(';')
             for a_glyph in opt_list:
@@ -29,7 +29,7 @@ def ref_parse(ref_pointer):
 
 
 def rendering_parse(rend_pointer):
-    #parses the rendered output and make a list hb_out
+    # parses the rendered output and make a list hb_out
     rendered_file = rend_pointer.read()
     rend_list = []
     rend_lines = rendered_file.replace('[', '').replace(']', '')
@@ -48,7 +48,7 @@ def rendering_parse(rend_pointer):
 
 
 def render_test(test_case, ref_list, hb_out):
-    #compares rendered output and reference glyphs
+    # compares rendered output and reference glyphs
     result_list = []
     wordlist = []
     result_list = [i for i, j in zip(ref_list, hb_out) if i != j]
@@ -69,7 +69,7 @@ def render_test(test_case, ref_list, hb_out):
 
 
 def multiple_render_check(a, glyph_array, multiple_glyphs, hb_out):
-   #test if any one of multiple renderings is correct
+   # test if any one of multiple renderings is correct
     flag = 0
     common_words_index = list(set(a).intersection(set(glyph_array)))
     common_words_index = array('i', sorted(common_words_index))
@@ -84,8 +84,8 @@ def multiple_render_check(a, glyph_array, multiple_glyphs, hb_out):
 
 
 def get_result(a, wordlist, result_file):
-    #writes result to the result_file
-    result_fp = open(result_file,'w')
+    # writes result to the result_file
+    result_fp = open(result_file, 'w')
     for position in a:
         result_fp.write("%d " % (position + 1) + wordlist[position] + '\n')
     result_fp.close()
