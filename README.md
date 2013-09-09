@@ -22,9 +22,9 @@ If that is not the case, you will have to create it for the font you wish and th
 
 Now that you have all the necessary files, run the script rendering_testing.py with all the file names as parameters.
 
-./rendering_testing.py [-h] [-v] -w WORD_LIST_FILE -r REFERENCE_FILE -t
-                    RENDERED_OUTPUT_FILE -o OUTPUT_FILE -e ERROR_FILE
-                    -f FONT_FILE [-m DIRNAME]
+./rendering_testing.py [-h] [-v] [-w WORD_LIST_FILE] -r REFERENCE_FILE -t
+                    RENDERED_OUTPUT_FILE [-o OUTPUT_FILE] [-e ERROR_FILE]
+                    [-f FONT_FILE] [-m DIRNAME]
 For more info run:
 
 ./rendering_testing.py -h 
