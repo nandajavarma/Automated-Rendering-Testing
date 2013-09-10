@@ -18,7 +18,7 @@ Now if the word has more than one correct rendering, provide the next correct on
 Now the file with rendering outputs. If the engine you are testing for is Harfbuzz, you can create this file using the script generate_hb_rendering.py. Run:
 
 ./generate_hb_rendering.py -t text_file -f font_file -o output_file 
-If that is not the case, you will have to create it for the font you wish and the rendering of each word must be in the form: [glyph_name1|glyph_name2|..] Here is the harfbuzz rendering of the above mentioned test cases file in font Rachana: https://github.com/nandajavarma/Automated-Rendering-Testing/blob/master/lohit-ml-test-data/hb_lohit_ml_rendering.txt
+If that is not the case, you will have to create it for the font you wish and the rendering of each word must be in the form: [glyph_name1|glyph_name2|..] Here is the harfbuzz rendering of the above mentioned test cases file in font Rachana: https://github.com/nandajavarma/Automated-Rendering-Testing/blob/master/lohit-ml-test-data/hb_lohit_rendering.txt
 
 Now that you have all the necessary files, run the script rendering_testing.py with all the file names as parameters.
 
