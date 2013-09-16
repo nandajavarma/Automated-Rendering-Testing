@@ -43,6 +43,8 @@ if output_file:
     output_fp = open_file(output_file, "w")
 if test_cases:
     test_fp = open_file(test_cases, "r")
+else:
+    test_fp = 0
 ref_fp = open_file(ref_file, "r")
 rend_fp = open_file(rend_output, "r")
 # Calling function to test the engine

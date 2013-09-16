@@ -99,5 +99,5 @@ def main(ref_pointer, rend_pointer, test_case, result_file):
     a = multiple_render_check(a, glyph_array, multiple_glyphs, hb_out)
     if test_case and result_file:
         get_result(a, wordlist, result_file)
-    test_case.close()
+        test_case.close()
     return a, wordlist, f
