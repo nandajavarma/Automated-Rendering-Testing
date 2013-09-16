@@ -84,7 +84,7 @@ if f == 1:
             print "\nDirectory '" + dirname + \
                 "' shows the images of wrongly rendered words\n"
         else:
-            print "No font file provided! \
-                Cannot create images of wrongly rendered words"
+            print "No font file provided!" + \
+                "Cannot create images of wrongly rendered words"
 rend_fp.close()
 ref_fp.close()
