@@ -37,10 +37,12 @@ if ref_file == 0 or rend_output == 0:
 font_file = ConfigSectionMap('font-file')
 test_cases = ConfigSectionMap('test-cases-file')
 output_file = ConfigSectionMap('output-file')
-error_file = ConfigSectionMap('error-file')
 dirname = ConfigSectionMap('directory-name')
+outflag = 0
 if output_file:
-    output_fp = open_file(output_file, "w")
+    if output_file.endswith('.html'):
+        outflag = 1
+        output_fp = open_file(output_file, "w")
 if test_cases:
     test_fp = open_file(test_cases, "r")
 else:
@@ -49,44 +51,48 @@ ref_fp = open_file(ref_file, "r")
 rend_fp = open_file(rend_output, "r")
 # Calling function to test the engine
 a, wordlist, f = testing_modules.main(
-    ref_fp, rend_fp, test_fp, error_file)
+    ref_fp, rend_fp, test_fp)
 if f == 1:
     print "\nRendering problems observed!\n"
-    # Creating a copy of the index of wrongly rendered words
-    b = array('i', [])
-    for i in a:
-        b.append(i)
-    if output_file:
-        if test_cases:
-            print "File '" + output_file + \
-                "' shows the rendering status of each word\n"
-            # calling function to generate the results file
-            testing_modules.get_result(a, wordlist, output_fp)
-            output_fp.close()
-        else:
-            print "No test cases file provided! Cannot create output file\n"
-    if error_file:
-        if test_cases:
-            print "File '" + error_file + \
-                "' shows the list of wrongly rendered words\n"
-        else:
-            print "No test cases file provided! Cannot create error file\n"
+    if output_file and outflag != 1:
+        print "Provide an html file as output file." + \
+            "Cannot generate the result. Exiting.."
+        sys.exit()
     # Assuming the engine would be harfbuzz if a directory name is provided
-    if dirname:
+    diflag = 0
+    if dirname and outflag:
         if font_file:
-            font_fp = open_file(font_file, "r")
-            cmd1 = 'mkdir ' + dirname
-            os.system(cmd1)
-            for i in b:
-                cmd2 = 'hb-view ' + font_file + ' ' + \
-                    wordlist[i] + ' > ' + dirname + \
-                    '/' + '%d' % (i + 1) + '.png'
-                os.system(cmd2)
-            print "\nDirectory '" + dirname + \
-                "' shows the images of wrongly rendered words\n"
-            font_fp.close()
+            if font_file.endswith('.ttf'):
+                diflag = 1
+                font_fp = open_file(font_file, "r")
+                if os.path.isdir(dirname):
+                    cmd0 = 'rm -rf ' + dirname
+                    os.system(cmd0)
+                cmd1 = 'mkdir ' + dirname
+                os.system(cmd1)
+                i = 0
+                print "\nProcessing...."
+                while wordlist[i] != "":
+                    cmd2 = 'hb-view ' + font_file + ' ' + \
+                        wordlist[i] + ' > ' + dirname + \
+                        '/' + '%d' % (i + 1) + '.png'
+                    os.system(cmd2)
+                    i = i + 1
+                font_fp.close()
+            else:
+                print "Provide a font file with .ttf extension." + \
+                    "Cannot create harfbuzz rendered images.\n"
         else:
             print "No font file provided!" + \
-                "Cannot create images of wrongly rendered words"
+                "Cannot create harfbuzz rendered images.\n"    
+    if outflag:
+        if test_cases:
+            print "\nOpen the file '" + output_file + \
+                "' in a browser to see the result\n"
+            # calling function to generate the results file
+            testing_modules.get_result(a, wordlist, output_fp, diflag, dirname)
+            output_fp.close()
+        else:
+            print "No test cases file provided! Cannot generate the result.\n"
 rend_fp.close()
 ref_fp.close()
