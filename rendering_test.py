@@ -74,6 +74,7 @@ if f == 1:
     # Assuming the engine would be harfbuzz if a directory name is provided
     if dirname:
         if font_file:
+            font_fp = open_file(font_file, "r")
             cmd1 = 'mkdir ' + dirname
             os.system(cmd1)
             for i in b:
@@ -83,6 +84,7 @@ if f == 1:
                 os.system(cmd2)
             print "\nDirectory '" + dirname + \
                 "' shows the images of wrongly rendered words\n"
+            font_fp.close()
         else:
             print "No font file provided!" + \
                 "Cannot create images of wrongly rendered words"
