@@ -32,7 +32,8 @@ Now that you have all the necessary files, write these data to an .ini file for 
 Out of these, Reference-file and Rendered-output are mandatory. Comment out all the other lines, if a result file is not necessary. A directory-name is to be provided if the shaping engine to be tested is harfbuzz. It is to store the rendered images by harfbuzz. Here is a sample: https://github.com/nandajavarma/Automated-Rendering-Testing/blob/master/ml-test-data/lohit-ml-test-data/Lohit-ml.ini 
 
 Now to test, run the script rendering_test.py passing the name of the .ini file as a parameter.
-For example: 
+For example:
+
 	./rendering_test.py Lohit-ml.ini
 
 (In the repo one can find samples in four Malayalam fonts and one Devanagari font. Test cases file for Malayalam being https://github.com/nandajavarma/Automated-Rendering-Testing/blob/master/ml-test-data/ml-test-cases.txt and that for Devanagari being https://github.com/nandajavarma/Automated-Rendering-Testing/blob/master/devanagari-test-data/devanagari_test_cases.txt.)
