@@ -84,7 +84,7 @@ if f == 1:
                     "Cannot create harfbuzz rendered images.\n"
         else:
             print "No font file provided!" + \
-                "Cannot create harfbuzz rendered images.\n"    
+                "Cannot create harfbuzz rendered images.\n"
     if outflag:
         if test_cases:
             print "\nOpen the file '" + output_file + \
