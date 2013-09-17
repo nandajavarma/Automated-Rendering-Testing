@@ -28,8 +28,8 @@ Now that you have all the necessary files, write these data to an .ini file for 
     Font-file: 
     Test-cases-file: 
     Output-file: 
-    Directory-name: 
-Out of these, Reference-file and Rendered-output are mandatory. Comment out all the other lines, if a result file is not necessary. A directory-name is to be provided if the shaping engine to be tested is harfbuzz. It is to store the rendered images by harfbuzz. Here is a sample: https://github.com/nandajavarma/Automated-Rendering-Testing/blob/master/ml-test-data/lohit-ml-test-data/Lohit-ml.ini 
+    Shaping-engine: 
+Out of these, Reference-file and Rendered-output are mandatory. Comment out all the other lines, if a result file is not necessary. If the shaping-engine is harfbuzz, then the output file will also have harfbuzz rendered image of every word. These images will be stored inside a directory names 'hb_images'. Here is a sample: https://github.com/nandajavarma/Automated-Rendering-Testing/blob/master/ml-test-data/lohit-ml-test-data/Lohit-ml.ini 
 
 Now to test, run the script rendering_test.py passing the name of the .ini file as a parameter.
 For example:

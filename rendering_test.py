@@ -37,7 +37,10 @@ if ref_file == 0 or rend_output == 0:
 font_file = ConfigSectionMap('font-file')
 test_cases = ConfigSectionMap('test-cases-file')
 output_file = ConfigSectionMap('output-file')
-dirname = ConfigSectionMap('directory-name')
+engine = ConfigSectionMap('shaping-engine')
+hbflag = 0
+if engine.lower() == 'harfbuzz':
+    hbflag = 1
 outflag = 0
 if output_file:
     if output_file.endswith('.html'):
@@ -59,8 +62,9 @@ if f == 1:
             "Cannot generate the result. Exiting.."
         sys.exit()
     # Assuming the engine would be harfbuzz if a directory name is provided
+    dirname = 'hb_images'
     diflag = 0
-    if dirname and outflag:
+    if hbflag and outflag:
         if font_file:
             if font_file.endswith('.ttf'):
                 diflag = 1
