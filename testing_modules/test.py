@@ -70,10 +70,10 @@ def render_test(test_case, ref_list, hb_out):
 
 def multiple_render_check(a, glyph_array, multiple_glyphs, hb_out):
    # test if any one of multiple renderings is correct
-    flag = 0
     common_words_index = list(set(a).intersection(set(glyph_array)))
     common_words_index = array('i', sorted(common_words_index))
     for each_term, value in zip(multiple_glyphs, common_words_index):
+        flag = 0
         for one_glyph in each_term:
             if one_glyph == hb_out[value]:
                 flag = 1
