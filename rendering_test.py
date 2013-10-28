@@ -23,7 +23,15 @@ import os
 import testing_modules
 from array import *
 
-script, config_file = argv
+try:
+    config_file = sys.argv[1]
+    if config_file.endswith('.ini') == 0:
+        print "Provide a configuration file in ini format as the argument. Exiting!.."
+        sys.exit()
+except IndexError:
+    print "Usage: rendering_test.py CONFIGURATION_FILE\nProvide an ini file as argument"
+    sys.exit()
+
 # Checking error status of files
 
 
