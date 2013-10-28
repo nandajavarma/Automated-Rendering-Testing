@@ -27,9 +27,20 @@ script, config_file = argv
 # Checking error status of files
 
 
+def get_path(file_name):
+    config_dir = os.path.dirname(config_file)
+    file_dir = os.path.dirname(file_name)
+    if file_dir:
+        file_dir = file_dir + '/'
+    absolute_file_dir = os.path.join(config_dir, file_dir)
+    real_file_name = file_name.split('/')[-1]
+    file_path =  absolute_file_dir + real_file_name
+    return file_path
+
 def open_file(file_name, descriptor):
+    file_path = get_path(file_name)
     try:
-        file_pointer = open(file_name, descriptor)
+        file_pointer = open(file_path, descriptor)
     except:
         print "\nCould not open the file " + file_name
         sys.exit()
@@ -82,7 +93,7 @@ if f == 1:
     if outflag:
         if test_cases:
             #creating images if the engine is harfbuzz
-            dirname = 'hb_images'
+            dirname = get_path('hb_images')
             diflag = 0
             if hbflag:
                 if font_file:
@@ -96,8 +107,9 @@ if f == 1:
                         os.system(cmd1)
                         i = 0
                         print "\nProcessing...."
+                        font_path = get_path(font_file)
                         while wordlist[i] != "":
-                            cmd2 = 'hb-view ' + font_file + ' ' + \
+                            cmd2 = 'hb-view ' + font_path + ' ' + \
                                 wordlist[i] + ' > ' + dirname + \
                                 '/' + '%d' % (i + 1) + '.png'
                             os.system(cmd2)

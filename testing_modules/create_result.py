@@ -2,6 +2,7 @@
 # status
 from array import *
 import sys
+import os
 
 
 def get_result(a, wordlist, res_file_pointer, dirflag, dirname):
@@ -44,7 +45,7 @@ def get_result(a, wordlist, res_file_pointer, dirflag, dirname):
             res_file_pointer.write("</td>")
             if dirflag:
                 res_file_pointer.write(
-                    "<td align='center'><img src='" + dirname + "/" + '%d' %
+                    "<td align='center'><img src='hb_images/" + '%d' %
                     (j) + ".png' width=200 height=150></td>")
             j = j + 1
     res_file_pointer.close()
