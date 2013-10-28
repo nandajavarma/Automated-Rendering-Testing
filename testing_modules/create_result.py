@@ -33,13 +33,18 @@ def get_result(a, wordlist, res_file_pointer, dirflag, dirname):
             else:
                 res.insert(k, 0)
             if res[j - 1] == 1:
-                res_file_pointer.write("<tr><td align='center' style='color:red'>" + '%d' % (j))
-                res_file_pointer.write("</td><td align='center' style='color:red'>" + rline)
+                res_file_pointer.write(
+                    "<tr><td align='center' style='color:red'>" + '%d' %
+                    (j))
+                res_file_pointer.write(
+                    "</td><td align='center' style='color:red'>" +
+                    rline)
             else:
                 res_file_pointer.write("<tr><td align='center'>" + '%d' % (j))
                 res_file_pointer.write("</td><td align='center'>" + rline)
             if res[j - 1] == 1:
-                res_file_pointer.write("</td><td align='center' style='color:red'>No")
+                res_file_pointer.write(
+                    "</td><td align='center' style='color:red'>No")
             else:
                 res_file_pointer.write("</td><td align='center'>Yes")
             res_file_pointer.write("</td>")

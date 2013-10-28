@@ -26,10 +26,12 @@ from array import *
 try:
     config_file = sys.argv[1]
     if config_file.endswith('.ini') == 0:
-        print "Provide a configuration file in ini format as the argument. Exiting!.."
+        print "Provide a configuration file in ini format as the \
+            argument. Exiting!.."
         sys.exit()
 except IndexError:
-    print "Usage: rendering_test.py CONFIGURATION_FILE\nProvide an ini file as argument"
+    print "Usage: rendering_test.py CONFIGURATION_FILE\
+        \nProvide an ini file as argument"
     sys.exit()
 
 # Checking error status of files
@@ -42,8 +44,9 @@ def get_path(file_name):
         file_dir = file_dir + '/'
     absolute_file_dir = os.path.join(config_dir, file_dir)
     real_file_name = file_name.split('/')[-1]
-    file_path =  absolute_file_dir + real_file_name
+    file_path = absolute_file_dir + real_file_name
     return file_path
+
 
 def open_file(file_name, descriptor):
     file_path = get_path(file_name)
@@ -100,7 +103,7 @@ if f == 1:
         sys.exit()
     if outflag:
         if test_cases:
-            #creating images if the engine is harfbuzz
+            # creating images if the engine is harfbuzz
             dirname = get_path('hb_images')
             diflag = 0
             if hbflag:
@@ -130,7 +133,7 @@ if f == 1:
                     print "No font file provided!" + \
                         "Cannot create harfbuzz rendered images.\n"
             print "\nOpen the file '" + output_file + \
-                        "' in a browser to see the result\n"
+                "' in a browser to see the result\n"
             # calling function to generate the results file
             testing_modules.get_result(a, wordlist, output_fp, diflag, dirname)
             output_fp.close()
