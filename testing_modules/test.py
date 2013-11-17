@@ -24,8 +24,7 @@ def ref_parse(ref_pointer):
             multiple_glyphs.append(optional_list)
         aword = aline.split(',')
         ref_list.append(aword)
-    ref_pointer.close()
-    return glyph_array, ref_list, multiple_glyphs
+    return glyph_array, ref_list, multiple_glyphs, clean_file
 
 
 def rendering_parse(rend_pointer):
@@ -43,8 +42,7 @@ def rendering_parse(rend_pointer):
         for y in x:
             n.append(y.split('=')[0])
         hb_out.append(n)
-    rend_pointer.close()
-    return hb_out
+    return hb_out, rend_file_lines
 
 
 def render_test(test_case, ref_list, hb_out):
@@ -84,8 +82,8 @@ def multiple_render_check(a, glyph_array, multiple_glyphs, hb_out):
 
 
 def main(ref_pointer, rend_pointer, test_case):
-    glyph_array, ref_list, multiple_glyphs = ref_parse(ref_pointer)
-    hb_out = rendering_parse(rend_pointer)
+    glyph_array, ref_list, multiple_glyphs, ref_file_lines = ref_parse(ref_pointer)
+    hb_out, rend_file_lines = rendering_parse(rend_pointer)
     a, wordlist, f = render_test(test_case, ref_list, hb_out)
     a = multiple_render_check(a, glyph_array, multiple_glyphs, hb_out)
-    return a, wordlist, f
+    return a, wordlist, f, ref_file_lines, hb_out

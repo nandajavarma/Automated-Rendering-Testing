@@ -3,9 +3,10 @@
 from array import *
 import sys
 import os
+import re
 
 
-def get_result(a, wordlist, res_file_pointer, dirflag, dirname):
+def get_result(a, wordlist, res_file_pointer, dirflag, dirname, ref_list, rend_list):
     res_file_pointer.write(
         "<html><head><title>Harfbuzz render results</title>")
     res_file_pointer.write(
@@ -14,9 +15,10 @@ def get_result(a, wordlist, res_file_pointer, dirflag, dirname):
     res_file_pointer.write("<body>")
     res_file_pointer.write("<table border=1 align='center'>")
     res_file_pointer.write(
-        "<tr><th>No.</th><th>Word</th><th>Rendering status</th>")
+        "<tr><th>No.</th><th>Word</th><th>Rendering status</th> \
+            <th>Current glyph sequence</th><th>Expected glyph sequence</th>")
     if dirflag:
-        res_file_pointer.write("<th>Harfbuzz rendering</th>")
+        res_file_pointer.write("<th align = 'left'>Harfbuzz rendering</th>")
     j = 1
     res = array('i', [])
     for rline in wordlist:
@@ -48,10 +50,22 @@ def get_result(a, wordlist, res_file_pointer, dirflag, dirname):
             else:
                 res_file_pointer.write("</td><td align='center'>Yes")
             res_file_pointer.write("</td>")
+            if res[j-1] == 1:
+                res_file_pointer.write("<td align='center' style='color:red'>")
+                for i in rend_list[k]:
+                    res_file_pointer.write(i)
+                    if rend_list[k].index(i) + 1 != len(rend_list[k]):
+                        res_file_pointer.write(',')
+                correct_renderings = re.sub(r";", " or ", ref_list[k])
+                res_file_pointer.write("</td><td align='center' style='color:red'>" + correct_renderings)
+            else:
+                res_file_pointer.write("<td align='center'>No change necessary")
+                res_file_pointer.write("<td align='center'>No change necessary")
             if dirflag:
                 res_file_pointer.write(
-                    "<td align='center'><img src='hb_images/" + '%d' %
-                    (j) + ".png' width=200 height=150></td>")
+                    "<td align='left'><img src='hb_images/" + '%d' %
+                    (j) + ".png' ></td>")
             j = j + 1
+            res_file_pointer.write("</tr>")
     res_file_pointer.close()
     return

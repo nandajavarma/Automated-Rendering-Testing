@@ -93,9 +93,13 @@ else:
 ref_fp = open_file(ref_file, "r")
 rend_fp = open_file(rend_output, "r")
 # Calling function to test the engine
-a, wordlist, f = testing_modules.main(
-    ref_fp, rend_fp, test_fp)
-if f == 1:
+a, wordlist, check_flag, ref_file_lines, rend_file_lines = \
+    testing_modules.main(ref_fp, rend_fp, test_fp)
+ref_pointer = open_file(ref_file, "r")
+rend_pointer = open_file(rend_output, "r")
+rend_lists = rend_pointer.read().split("\n")
+ref_lists = ref_pointer.read().split("\n")
+if check_flag == 1:
     print "\nRendering problems observed!\n"
     if output_file and outflag != 1:
         print "Provide an html file as output file." + \
@@ -135,9 +139,10 @@ if f == 1:
             print "\nOpen the file '" + output_file + \
                 "' in a browser to see the result\n"
             # calling function to generate the results file
-            testing_modules.get_result(a, wordlist, output_fp, diflag, dirname)
+            testing_modules.get_result(a, wordlist, output_fp, diflag, dirname, ref_file_lines, rend_file_lines)
             output_fp.close()
         else:
             print "No test cases file provided! Cannot generate the result.\n"
 rend_fp.close()
 ref_fp.close()
+
