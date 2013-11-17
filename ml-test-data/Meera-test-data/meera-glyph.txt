@@ -65,7 +65,7 @@
 [ml_u,dotrephv1v1,z1,i1]
 [p4,a2,y1,dotreph]
 [p4,a2,dotrephy1y1]
-[n1,i1,l3,dotreph,o2,p4,anuswara]
+[n1,i1,l3,dotreph,o2,p4,anuswara];[n1,i1,e2,l3,dotreph,a2,p4,anuswara]
 [n1,i1,l3l3,dotreph,o2,p4,anuswara];[n1,i1,l3,dotreph,l4,o2,p4,anuswara];[n1,i1,e2,l3l3,dotreph,a2,p4,anuswara]
 [y1,a2,th1r3,a2,k1k1u2,l3,i1]
 [v1,y1y1]
