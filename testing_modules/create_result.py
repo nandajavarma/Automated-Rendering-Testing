@@ -59,8 +59,12 @@ def get_result(a, wordlist, res_file_pointer, dirflag, dirname, ref_list, rend_l
                 correct_renderings = re.sub(r";", " or ", ref_list[k])
                 res_file_pointer.write("</td><td align='center' style='color:red'>" + correct_renderings)
             else:
-                res_file_pointer.write("<td align='center'>No change necessary")
-                res_file_pointer.write("<td align='center'>No change necessary")
+                res_file_pointer.write("<td align='center'>")
+                for i in rend_list[k]:
+                    res_file_pointer.write(i)
+                    if rend_list[k].index(i) + 1 != len(rend_list[k]):
+                        res_file_pointer.write(',')
+                res_file_pointer.write("<td align='center'>Same")
             if dirflag:
                 res_file_pointer.write(
                     "<td align='left'><img src='hb_images/" + '%d' %
