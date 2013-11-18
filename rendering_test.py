@@ -139,10 +139,16 @@ if check_flag == 1:
             print "\nOpen the file '" + output_file + \
                 "' in a browser to see the result\n"
             # calling function to generate the results file
-            testing_modules.get_result(a, wordlist, output_fp, diflag, dirname, ref_file_lines, rend_file_lines)
+            testing_modules.get_result(
+                a,
+                wordlist,
+                output_fp,
+                diflag,
+                dirname,
+                ref_file_lines,
+                rend_file_lines)
             output_fp.close()
         else:
             print "No test cases file provided! Cannot generate the result.\n"
 rend_fp.close()
 ref_fp.close()
-

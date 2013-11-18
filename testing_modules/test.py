@@ -82,7 +82,8 @@ def multiple_render_check(a, glyph_array, multiple_glyphs, hb_out):
 
 
 def main(ref_pointer, rend_pointer, test_case):
-    glyph_array, ref_list, multiple_glyphs, ref_file_lines = ref_parse(ref_pointer)
+    glyph_array, ref_list, multiple_glyphs, ref_file_lines = ref_parse(
+        ref_pointer)
     hb_out, rend_file_lines = rendering_parse(rend_pointer)
     a, wordlist, f = render_test(test_case, ref_list, hb_out)
     a = multiple_render_check(a, glyph_array, multiple_glyphs, hb_out)

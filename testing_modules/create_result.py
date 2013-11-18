@@ -6,7 +6,8 @@ import os
 import re
 
 
-def get_result(a, wordlist, res_file_pointer, dirflag, dirname, ref_list, rend_list):
+def get_result(a, wordlist, res_file_pointer,
+               dirflag, dirname, ref_list, rend_list):
     res_file_pointer.write(
         "<html><head><title>Harfbuzz render results</title>")
     res_file_pointer.write(
@@ -50,14 +51,16 @@ def get_result(a, wordlist, res_file_pointer, dirflag, dirname, ref_list, rend_l
             else:
                 res_file_pointer.write("</td><td align='center'>Yes")
             res_file_pointer.write("</td>")
-            if res[j-1] == 1:
+            if res[j - 1] == 1:
                 res_file_pointer.write("<td align='center' style='color:red'>")
                 for i in rend_list[k]:
                     res_file_pointer.write(i)
                     if rend_list[k].index(i) + 1 != len(rend_list[k]):
                         res_file_pointer.write(',')
                 correct_renderings = re.sub(r";", " or ", ref_list[k])
-                res_file_pointer.write("</td><td align='center' style='color:red'>" + correct_renderings)
+                res_file_pointer.write(
+                    "</td><td align='center' style='color:red'>" +
+                    correct_renderings)
             else:
                 res_file_pointer.write("<td align='center'>")
                 for i in rend_list[k]:
