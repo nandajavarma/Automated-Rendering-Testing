@@ -1,6 +1,8 @@
 Automated Rendering Testing
 ===========================
 
+Wiki page: http://wiki.smc.org.in/Automated_rendering_testing
+
 A framework to test the correctness of output by rendering engines.
 
 Files required to test rendering using this framework:
